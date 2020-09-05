@@ -1,11 +1,14 @@
-class MediaHandler {
+export default class MediaHandler {
     getPermissions() {
+        let constraints = {
+            video: false,
+            audio: false
+        };
+
         return new Promise((res, rej) => {
-            navigator.mediaDevices.getUserMedia({
-                video: true,
-                audio: true
-            }).then((stream) => {
-                resolve(stream);
+            console.log(navigator, 123);
+            navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+                res(stream);
             }).catch(err => {
                 throw new Error(`Unable to fetch stream ${err}`);
             });
